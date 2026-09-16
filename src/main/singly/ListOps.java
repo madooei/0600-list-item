@@ -18,20 +18,19 @@ public final class ListOps {
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Throws IndexOutOfBoundsException for a negative index or an index that is
-  // not less than size(head).
+  // Assumes index is valid.
   public static ListItem getListItem(ListItem head, int index) {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Same bounds contract as getListItem.
+  // Assumes index is valid.
   public static int get(ListItem head, int index) {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Same bounds contract as getListItem.
+  // Assumes index is valid.
   public static void set(ListItem head, int index, int value) {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
@@ -48,12 +47,6 @@ public final class ListOps {
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Assumes head is not null.
-  public static ListItem getLast(ListItem head) {
-    // TODO: Implement me
-    throw new UnsupportedOperationException("TODO: Implement me");
-  }
-
   // Returns the new head, which changes only when the list was empty; the
   // caller must reassign head = addLast(head, value).
   public static ListItem addLast(ListItem head, int value) {
@@ -61,21 +54,20 @@ public final class ListOps {
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Same bounds contract as getListItem; never changes head.
+  // Assumes index is valid; never changes head.
   public static ListItem insertAfter(ListItem head, int index, int value) {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Same bounds contract as getListItem; returns the new head, which changes
-  // only when index is 0.
+  // Assumes index is valid. Returns the new head, which changes only when
+  // index is 0.
   public static ListItem insertBefore(ListItem head, int index, int value) {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Throws IndexOutOfBoundsException for a negative index or an index that is
-  // not less than size(head). Returns the new head, which changes only when
+  // Assumes index is valid. Returns the new head, which changes only when
   // index is 0.
   public static ListItem remove(ListItem head, int index) {
     // TODO: Implement me
