@@ -26,30 +26,27 @@ public final class ListOps {
     return count;
   }
 
-  // Throws IndexOutOfBoundsException for a negative index or an index that is
-  // not less than size(head).
+  // Assumes index is valid.
   public static ListItem getListItem(ListItem head, int index) {
-    if (index < 0) {
-      throw new IndexOutOfBoundsException("Index: " + index);
-    }
     ListItem current = head;
-    for (int i = 0; i < index && current != null; i++) {
+    for (int i = 0; i < index; i++) {
       current = current.next;
-    }
-    if (current == null) {
-      throw new IndexOutOfBoundsException("Index: " + index);
     }
     return current;
   }
 
-  // Same bounds contract as getListItem.
+  // Assumes index is valid.
   public static int get(ListItem head, int index) {
     return getListItem(head, index).value;
   }
 
-  // Same bounds contract as getListItem.
+  // Assumes index is valid.
   public static void set(ListItem head, int index, int value) {
-    getListItem(head, index).value = value;
+    ListItem current = head;
+    for (int i = 0; i < index; i++) {
+      current = current.next;
+    }
+    current.value = value;
   }
 
   public static boolean contains(ListItem head, int target) {
@@ -73,31 +70,28 @@ public final class ListOps {
     return newItem;
   }
 
-  // Assumes head is not null.
-  public static ListItem getLast(ListItem head) {
-    ListItem current = head;
-    while (current.next != null) {
-      current = current.next;
-    }
-    return current;
-  }
-
   // Returns the new head, which changes only when the list was empty; the
   // caller must reassign head = addLast(head, value).
   public static ListItem addLast(ListItem head, int value) {
     if (head == null) {
-      return addFirst(head, value);
+      return new ListItem(value);
     }
-    ListItem tail = getLast(head);
+    ListItem current = head;
+    while (current.next != null) {
+      current = current.next;
+    }
     ListItem newItem = new ListItem(value);
-    newItem.prev = tail;
-    tail.next = newItem;
+    newItem.prev = current;
+    current.next = newItem;
     return head;
   }
 
-  // Same bounds contract as getListItem; never changes head.
+  // Assumes index is valid; never changes head.
   public static ListItem insertAfter(ListItem head, int index, int value) {
-    ListItem current = getListItem(head, index);
+    ListItem current = head;
+    for (int i = 0; i < index; i++) {
+      current = current.next;
+    }
     ListItem newItem = new ListItem(value);
     newItem.next = current.next;
     newItem.prev = current;
@@ -108,8 +102,8 @@ public final class ListOps {
     return head;
   }
 
-  // Same bounds contract as getListItem; returns the new head, which changes
-  // only when index is 0.
+  // Assumes index is valid. Returns the new head, which changes only when
+  // index is 0.
   public static ListItem insertBefore(ListItem head, int index, int value) {
     if (index == 0) {
       return addFirst(head, value);
@@ -117,13 +111,9 @@ public final class ListOps {
     return insertAfter(head, index - 1, value);
   }
 
-  // Throws IndexOutOfBoundsException for a negative index or an index that is
-  // not less than size(head). Returns the new head, which changes only when
+  // Assumes index is valid. Returns the new head, which changes only when
   // index is 0.
   public static ListItem remove(ListItem head, int index) {
-    if (index < 0 || head == null) {
-      throw new IndexOutOfBoundsException("Index: " + index);
-    }
     if (index == 0) {
       ListItem newHead = head.next;
       if (newHead != null) {
@@ -132,11 +122,8 @@ public final class ListOps {
       return newHead;
     }
     ListItem previous = head;
-    for (int i = 0; i < index - 1 && previous.next != null; i++) {
+    for (int i = 0; i < index - 1; i++) {
       previous = previous.next;
-    }
-    if (previous.next == null) {
-      throw new IndexOutOfBoundsException("Index: " + index);
     }
     previous.next = previous.next.next;
     if (previous.next != null) {
