@@ -33,7 +33,7 @@ code/
 
 There is no build tool and no test suite: testing is introduced later in the course. The script(s) above are all you need.
 
-## What's here
+## Contents
 
 - `singly.ListItem` / `doubly.ListItem` — public classes with public fields. Plain data, no behavior. `doubly.ListItem` adds `prev` on top of `singly.ListItem`'s `value`/`next`.
 - `singly.ListOps` — traversal (`printAll`), `size`, `get`/`set`/`getListItem` by index, `contains`, `addFirst`, `addLast`, index-based `insertAfter`/`insertBefore`/`remove`, and the O(1) `insertAfter(item, value)` overload. There is no `insertBefore(item, value)` or `remove(item)` overload here — a singly linked item has no reference back to its predecessor.
